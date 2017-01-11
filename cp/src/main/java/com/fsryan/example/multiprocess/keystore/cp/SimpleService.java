@@ -82,6 +82,9 @@ public class SimpleService extends Service {
     @Override
     public void onDestroy() {
         Log.i(LOG_TAG, "onDestroy");
+        if (executor == null || executor.isShutdown()) {
+            return;
+        }
         executor.shutdownNow();
     }
 
