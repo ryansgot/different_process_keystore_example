@@ -1,0 +1,24 @@
+<manifest xmlns:android="http://schemas.android.com/apk/res/android"
+    package="com.fsryan.example.multiprocess.keystore.cp">
+
+    <!-- Android 15 and below cannot set exported=false, so add permission for read/write -->
+    <permission
+        android:name="com.fsryan.example.multiprocess.keystore.cp.PERMISSION"
+        android:protectionLevel="signature" />
+
+    <application>
+        <provider
+            android:authorities="com.fsryan.example.multiprocess.keystore.cp"
+            android:name=".SimpleContent"
+            android:enabled="true"
+            android:exported="false"
+            android:process=":simple_content"
+            android:permission="com.fsryan.example.multiprocess.keystore.cp.PERMISSION" />
+        <service
+            android:name=".SimpleService"
+            android:process=":simple_content"
+            android:enabled="true"
+            android:exported="false" />
+    </application>
+
+</manifest>
